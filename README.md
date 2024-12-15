@@ -6,7 +6,7 @@ The core of the application is a `Raffle` smart contract. The idea of this appli
 
 In this application I needed to generate random numbers to choose the winners, as well as be able to run the raffle automatically on schedule. To achieve this I've made use of Chainlink's [VRF](https://docs.chain.link/vrf) capability and [Automation service](https://docs.chain.link/chainlink-automation).
 
-TODO - add little diagram of how things work
+![Raffle Architecture Diagram](/resources/Raffle%20diagram.png)
 
 ## Learnings and techniques used
 
