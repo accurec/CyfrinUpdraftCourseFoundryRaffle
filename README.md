@@ -44,7 +44,7 @@ git clone https://github.com/accurec/CyfrinUpdraftCourseFoundryRaffle.git
 9) You can now deploy to Sepolia using `make deploy-sepolia` command.
 10) Alternatively, can deploy locally and run ...... TODO
 
-## End-to-end walkthrough on Seploia test network
+## End-to-end walkthrough on Sepolia test network
 
 1) After deploying to Sepolia we can look at the contract state variables. [Example](https://sepolia.etherscan.io/address/0x7b9c63f3B6A5Be805234F23d5689AFeACb476602#readContract). We can see latest winner and verify that if raffle has never been run then the address will be a zero address.
 2) We then can register a new upkeep in Chainlink. [Example](https://automation.chain.link/sepolia/56794300597436026353414141436479458441442761384838899883395464310339413823361).
