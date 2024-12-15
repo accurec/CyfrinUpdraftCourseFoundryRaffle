@@ -6,6 +6,8 @@ The core of the application is a `Raffle` smart contract. The idea of this appli
 
 In this application I needed to generate random numbers to choose the winners, as well as be able to run the raffle automatically on schedule. To achieve this I've made use of Chainlink's [VRF](https://docs.chain.link/vrf) capability and [Automation service](https://docs.chain.link/chainlink-automation).
 
+TODO - add little diagram of how things work
+
 ## Learnings and techniques used
 
 As part of lesson I've learned a bunch of things:
@@ -44,7 +46,12 @@ git clone https://github.com/accurec/CyfrinUpdraftCourseFoundryRaffle.git
 
 ## End-to-end walkthrough on Seploia test network
 
-TODO
+1) After deploying to Sepolia we can look at the contract state variables. [Example](https://sepolia.etherscan.io/address/0x7b9c63f3B6A5Be805234F23d5689AFeACb476602#readContract). We can see latest winner and verify that if raffle has never been run then the address will be a zero address.
+2) We then can register a new upkeep in Chainlink. [Example](https://automation.chain.link/sepolia/56794300597436026353414141436479458441442761384838899883395464310339413823361).
+3) Once the upkeep has been registered, we can go ahead and write to our `Raffle` contract to `enterRaffle` function with any value that is higher than the minimum entry fee.
+4) Once this is done, we can wait an amount of time that has been configured in `HelperConfig.s.sol` file `getSepoliaEthConfig()` function `interval` parameter, and see that Chainlink called `performUpkeep()` function.
+5) Once the `performUpkeep()` is called then the control flow is passed to VRF, which will call `fulfillRandomWords` function on the contract once the random values are ready. [Example](https://sepolia.etherscan.io/tx/0x0f7d4f9d1a5d3fe56858170f9989b117fe2897aa370ebeca575ae9d12ba1b37e) can see internal call to `Fulfill Random Words`.
+6) We then can check that the latest winner has been updated in our contract by reading from it and verify that the winner was indeed us.
 
 ## Useful resources
 
