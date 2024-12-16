@@ -42,7 +42,7 @@ git clone https://github.com/accurec/CyfrinUpdraftCourseFoundryRaffle.git
 7) Make sure you have some testnet ETH and LINK balance on the account that you have specified in step #5 above. These are good faucets to use to get some: [ETH Sepolia faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) and [LINK and ETH Sepolia faucet](https://faucets.chain.link/sepolia).
 8) Make sure you've created subscription for VRF using [this link](https://vrf.chain.link/) and funded it with enough LINK. Use the subscription ID that you get from it and replace in `HelperConfig.s.sol` file for `getSepoliaEthConfig()` function, `subscriptionId` field.
 9) You can now deploy to Sepolia using `make deploy-sepolia` command.
-10) Alternatively, can deploy locally and run ...... TODO
+10) Alternatively, can deploy locally and run `make deploy-local`. Make sure to encrypt Anvil's key for the address `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266` using `cast wallet import` command.
 
 ## End-to-end walkthrough on Sepolia test network
 

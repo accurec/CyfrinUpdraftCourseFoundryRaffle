@@ -80,10 +80,10 @@ contract HelperConfig is Script, CodeConstants {
                 interval: 30, // seconds
                 vrfCoordinator: address(vrfCoordinatorMock),
                 gasLane: bytes32(0), // For mock it does not matter, because mock will make it work anyway
-                subscriptionId: 0, // Might have to fix this
+                subscriptionId: 0,
                 callbackGasLimit: 500000, // Does not matter for mock
                 link: address(linkToken),
-                account: DEFAULT_SENDER
+                account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 // Anvil test ID
             });
         }
 
