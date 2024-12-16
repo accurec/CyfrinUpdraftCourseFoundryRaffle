@@ -43,12 +43,13 @@ git clone https://github.com/accurec/CyfrinUpdraftCourseFoundryRaffle.git
 8) Make sure you've created subscription for VRF using [this link](https://vrf.chain.link/) and funded it with enough LINK. Use the subscription ID that you get from it and replace in `HelperConfig.s.sol` file for `getSepoliaEthConfig()` function, `subscriptionId` field.
 9) You can now deploy to Sepolia using `make deploy-sepolia` command.
 10) Alternatively, can deploy locally and run `make deploy-local`. Make sure to encrypt Anvil's key for the address `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266` using `cast wallet import` command. After deployment we can wait for `30 seconds` (interval time) and then run `make local-enter-raffle`. Then we can run `make local-perform-upkeep` and then `local-vrf-coordinator-fulfill-random-words` to simulate Chainlink's Automation and VRF request fulfillments. After that we can observe that the winner of the raffle has been set by running `make get-local-recent-winner`. 
-NOTE 1: A little hacky way, but I have not been able to figure out quicker way for now to fix the problem with 0 blocks blockchain when running `anvil` is to go directly to `lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/SubscriptionAPI.sol` and modify the line where the subscription ID is set based on the `block - 1` logic by removing the `-1` part before running `make deploy-local`: 
+
+**NOTE 1:** A little hacky way, but I have not been able to figure out quicker way for now to fix the problem with 0 blocks blockchain when running `anvil` is to go directly to `lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/SubscriptionAPI.sol` and modify the line where the subscription ID is set based on the `block - 1` logic by removing the `-1` part before running `make deploy-local`: 
 ```
 keccak256(abi.encodePacked(msg.sender, blockhash(block.number - 1), address(this), currentSubNonce))
 ```
 
-NOTE 2: For `.env` file the local values reference is:
+**NOTE 2:** For `.env` file the local values reference is:
 ```
 LOCAL_RPC_URL=http://127.0.0.1:8545
 LOCAL_RAFFLE_ADDRESS=0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9
